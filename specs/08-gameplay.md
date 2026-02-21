@@ -18,8 +18,8 @@ Definieert de spelregels en het gedrag van de wereld en de poppetjes. Alleen wat
 
 ## Poppetjes en start
 
-- Er staan altijd **x** poppetjes klaar (x is een spelparameter).
-- Bij start is **minstens één platform** aanwezig en "klaar"; daar kunnen poppetjes op staan.
+- Er staan altijd **x** poppetjes klaar op het **eerste platform** (x is een spelparameter).
+- Bij start is dat eerste platform aanwezig en "klaar".
 
 ## Bouwwereld en huizen
 
