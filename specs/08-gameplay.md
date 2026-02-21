@@ -35,9 +35,10 @@ Definieert de spelregels en het gedrag van de wereld en de poppetjes. Alleen wat
 - De speler plaatst een **huisje** in de bouwwereld; technisch/code: een **"project"**.
 - Na plaatsing is het huis in staat **"under construction"**.
 - Het project **beïnvloedt** wat de poppetjes doen; poppetjes krijgen **geen instructies**, ze zijn **autonoom**.
-- De engine onderhoudt een **timer** (voortgang) voor de bouw; voor de speler zichtbaar.
+- De engine onderhoudt een **punten-/voortgangssysteem** voor de bouw; voor de speler zichtbaar (percentage).
+- De bouw duurt zolang het duurt, afhankelijk van hoe snel het hout naar de bouwplaats komt.
 - Bouw duurt langer: op een platform **zonder poppetjes** (heel lang), **zonder bos of hout** (ook lang), of met **weinig poppetjes** (afhankelijk van hoeveel).
-- Als de timer vol is, is het gebouw af: het huisje is in zijn **volledige staat** zichtbaar.
+- Als de vereiste punten/voortgang vol is, is het gebouw af: het huisje is in zijn **volledige staat** zichtbaar.
 - Daarna gaan de poppetjes gewoon verder met hun "leven".
 - Als er niks te doen is, staan de poppetjes in **idle**-staat en wordt de idle-animatie afgespeeld.
 
