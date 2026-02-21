@@ -5,6 +5,9 @@ export type EngineReadModel = {
   tick: number;
   simSpeed: number;
   paused: boolean;
+  mapCols: number;
+  mapRows: number;
+  tileSizePx: number;
 };
 
 export type EngineMutableState = {
@@ -15,6 +18,9 @@ export type EngineMutableState = {
   simSpeed: number;
   paused: boolean;
   debugOverlayEnabled: boolean;
+  mapCols: number;
+  mapRows: number;
+  tileSizePx: number;
 };
 
 export function createInitialEngineState(): EngineMutableState {
@@ -26,6 +32,9 @@ export function createInitialEngineState(): EngineMutableState {
     simSpeed: 1,
     paused: false,
     debugOverlayEnabled: false,
+    mapCols: 128,
+    mapRows: 128,
+    tileSizePx: 32,
   };
 }
 
@@ -50,6 +59,9 @@ export function toReadModel(state: EngineMutableState): EngineReadModel {
     tick: state.tick,
     simSpeed: state.simSpeed,
     paused: state.paused,
+    mapCols: state.mapCols,
+    mapRows: state.mapRows,
+    tileSizePx: state.tileSizePx,
   };
 }
 

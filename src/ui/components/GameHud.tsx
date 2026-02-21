@@ -3,17 +3,19 @@ import { useUiStore } from "@ui/state/uiStore";
 
 type GameHudProps = {
   engine: EngineApi;
+  className?: string;
 };
 
-export function GameHud({ engine }: GameHudProps) {
+export function GameHud({ engine, className }: GameHudProps) {
   const showDebugOverlay = useUiStore((state) => state.showDebugOverlay);
   const setShowDebugOverlay = useUiStore((state) => state.setShowDebugOverlay);
   const simPaused = useUiStore((state) => state.simPaused);
   const setSimPaused = useUiStore((state) => state.setSimPaused);
 
   return (
-    <div style={{ position: "relative", zIndex: 2, padding: 8 }}>
+    <div className={className}>
       <button
+        className="hud-button"
         onClick={() => {
           const next = !simPaused;
           setSimPaused(next);
@@ -23,6 +25,7 @@ export function GameHud({ engine }: GameHudProps) {
         {simPaused ? "Resume sim" : "Pause sim"}
       </button>
       <button
+        className="hud-button"
         onClick={() => {
           const next = !showDebugOverlay;
           setShowDebugOverlay(next);

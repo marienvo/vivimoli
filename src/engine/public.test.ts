@@ -11,6 +11,10 @@ describe("engine fixed timestep", () => {
     expect(engine.getReadModel().tick).toBe(0);
 
     engine.tick(1000 / 120);
-    expect(engine.getReadModel().tick).toBe(1);
+    const model = engine.getReadModel();
+    expect(model.tick).toBe(1);
+    expect(model.mapCols).toBe(128);
+    expect(model.mapRows).toBe(128);
+    expect(model.tileSizePx).toBe(32);
   });
 });

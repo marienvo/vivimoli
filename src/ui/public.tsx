@@ -1,5 +1,6 @@
 import type { EngineApi } from "@engine/public";
-import { GameHud } from "@ui/components/GameHud";
+import { AppShell } from "@ui/components/AppShell";
+import "@ui/styles.css";
 import { createRoot } from "react-dom/client";
 
 export type UiDependencies = {
@@ -7,23 +8,36 @@ export type UiDependencies = {
   engine: EngineApi;
 };
 
-export function mountUi({ root, engine }: UiDependencies): () => void {
+export type MountedUi = {
+  canvasHost: HTMLDivElement;
+  unmount: () => void;
+};
+
+export async function mountUi({ root, engine }: UiDependencies): Promise<MountedUi> {
+  root.textContent = "";
+
   const container = document.createElement("div");
   container.dataset.role = "ui-root";
-  container.style.position = "absolute";
-  container.style.inset = "0";
-  container.style.pointerEvents = "none";
+  container.style.width = "100%";
+  container.style.height = "100%";
   root.append(container);
 
-  const interactiveLayer = document.createElement("div");
-  interactiveLayer.style.pointerEvents = "auto";
-  container.append(interactiveLayer);
+  const reactRoot = createRoot(container);
 
-  const reactRoot = createRoot(interactiveLayer);
-  reactRoot.render(<GameHud engine={engine} />);
-
-  return () => {
-    reactRoot.unmount();
-    container.remove();
-  };
+  return new Promise<MountedUi>((resolve) => {
+    reactRoot.render(
+      <AppShell
+        engine={engine}
+        onCanvasHostReady={(canvasHost) => {
+          resolve({
+            canvasHost,
+            unmount: () => {
+              reactRoot.unmount();
+              container.remove();
+            },
+          });
+        }}
+      />,
+    );
+  });
 }

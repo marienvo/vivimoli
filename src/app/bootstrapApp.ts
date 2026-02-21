@@ -3,7 +3,7 @@ import { createEngine } from "@engine/public";
 import { createRenderer } from "@render/public";
 import { mountUi } from "@ui/public";
 
-export function bootstrapApp(): void {
+export async function bootstrapApp(): Promise<void> {
   const root = document.getElementById("root");
   if (!root) {
     throw new Error("Missing #root mount element.");
@@ -11,13 +11,17 @@ export function bootstrapApp(): void {
 
   const time = createTimeAdapter();
   const engine = createEngine({ time });
-  const renderer = createRenderer({ root, engine });
-  const unmountUi = mountUi({ root, engine });
+  const mountedUi = await mountUi({ root, engine });
+  const renderer = await createRenderer({ host: mountedUi.canvasHost, engine });
 
   let last = time.now();
   let frameHandle = 0;
+  let active = true;
 
   const frame = (): void => {
+    if (!active) {
+      return;
+    }
     const now = time.now();
     const deltaMs = now - last;
     last = now;
@@ -30,9 +34,12 @@ export function bootstrapApp(): void {
 
   frameHandle = requestAnimationFrame(frame);
 
-  window.addEventListener("beforeunload", () => {
+  const onBeforeUnload = (): void => {
+    active = false;
     cancelAnimationFrame(frameHandle);
     renderer.destroy();
-    unmountUi();
-  });
+    mountedUi.unmount();
+    window.removeEventListener("beforeunload", onBeforeUnload);
+  };
+  window.addEventListener("beforeunload", onBeforeUnload);
 }

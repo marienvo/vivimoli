@@ -1,3 +1,3 @@
 import { bootstrapApp } from "@app/bootstrapApp";
 
-bootstrapApp();
+void bootstrapApp();
