@@ -7,14 +7,22 @@ Definieert de spelregels en het gedrag van de wereld en de poppetjes. Alleen wat
 ## Wereld
 
 - **2D-wereld** met **meerdere platformen** waarop poppetjes kunnen lopen.
-- Platformen zijn de enige "grond"; beweging tussen platformen verloopt niet door lopen maar via **luchtballon** (zie Beweging).
+- Platformen zijn de enige "grond"; beweging tussen platformen kan alleen via **luchtballon** of **parachute** (zie Beweging).
+- Sommige platformen hebben veel **bos**, andere weinig, andere geen.
+
+## Platform
+
+- Per platform (zichtbaar): **X bos**, **X hout** (bijv. stapel), en **huis in aanbouw of klaar**.
+- Poppetjes op een platform met toegang tot hout (taak: kappen) en toegang tot huis (taak: bouwen) bouwen zo het huis.
 
 ## Beweging
 
 - **Op een platform:** poppetjes lopen normaal (horizontaal op dat platform).
-- **Tussen platformen:** alleen mogelijk met een **luchtballon**.
-  - Van **hoger naar lager** platform: ze **dalen** en gebruiken een **parachute**.
-  - Van lager naar hoger of gelijke hoogte: ballon zonder parachute.
+- **Tussen platformen:** alleen mogelijk met **luchtballon** of **parachute**; dat is de enige manier.
+  - **Naar boven** of **horizontaal** naar ander platform: **luchtballon**.
+  - **Naar beneden** (ook schuin): **parachute**.
+- Met parachute of ballon neemt een poppetje **minder hout mee per keer** dan lopend op het platform.
+- Poppetjes bepalen zelf wat het snelst is: hout kappen in de buurt en lopend meenemen = veel hout kunnen dragen; hout kappen ver weg = sneller kappen maar minder meenemen (parachute/ballon).
 
 ## Start
 
@@ -22,20 +30,22 @@ Definieert de spelregels en het gedrag van de wereld en de poppetjes. Alleen wat
 - Daarop staan **x poppetjes** klaar en **x bomen** (x is een spelparameter).
 - Bij start doen de poppetjes nog niks en staan in **idle**-staat.
 
-## Bouwwereld en huizen
+## Bouwwereld en huizen (project)
 
-- De speler plaatst een **huisje** in de bouwwereld.
+- De speler plaatst een **huisje** in de bouwwereld; technisch/code: een **"project"**.
 - Na plaatsing is het huis in staat **"under construction"**.
-- De engine onderhoudt een **timer** (voortgang) voor de bouw van dat huis; voor de speler zichtbaar.
+- Het project **beïnvloedt** wat de poppetjes doen; poppetjes krijgen **geen instructies**, ze zijn **autonoom**.
+- De engine onderhoudt een **timer** (voortgang) voor de bouw; voor de speler zichtbaar.
+- Bouw duurt langer: op een platform **zonder poppetjes** (heel lang), **zonder bos of hout** (ook lang), of met **weinig poppetjes** (afhankelijk van hoeveel).
 - Als de timer vol is, is het gebouw af: het huisje is in zijn **volledige staat** zichtbaar.
 - Daarna gaan de poppetjes gewoon verder met hun "leven".
 - Als er niks te doen is, staan de poppetjes in **idle**-staat en wordt de idle-animatie afgespeeld.
 
-## Autonoom werk van poppetjes
+## Autonoom gedrag van poppetjes
 
-- Poppetjes gaan **zelf aan het werk** zodra er een huis in construction is.
-- Ze **hakken hout bij de bomen** en **brengen het hout naar de construction site**.
-- Gedrag: direct hout hakken en transport naar de bouwplaats; prioriteit/taakverdeling kan later verfijnd worden.
+- Poppetjes zijn **autonoom**; ze krijgen geen instructies.
+- Poppetjes op een platform met toegang tot hout (kappen) en tot het huis (bouwen) bouwen het huis door te kappen en hout aan te leveren.
+- Ze bepalen zelf de afweging: dichtbij kappen + lopend dragen = veel hout per keer; ver weg kappen = sneller kappen maar minder hout per keer (parachute/ballon).
 
 ## Relatie tot andere specs
 
