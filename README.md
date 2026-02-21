@@ -2,6 +2,8 @@
 
 Client-side browser game scaffold met React UI, Pixi renderer en bitecs ECS engine in TypeScript.
 
+![img.png](img.png)
+
 ## Stack
 
 - React + Vite (SPA)
