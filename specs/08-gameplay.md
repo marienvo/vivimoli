@@ -16,16 +16,20 @@ Definieert de spelregels en het gedrag van de wereld en de poppetjes. Alleen wat
   - Van **hoger naar lager** platform: ze **dalen** en gebruiken een **parachute**.
   - Van lager naar hoger of gelijke hoogte: ballon zonder parachute.
 
-## Poppetjes en start
+## Start
 
-- Er staan altijd **x** poppetjes klaar op het **eerste platform** (x is een spelparameter).
-- Bij start is dat eerste platform aanwezig en "klaar".
+- Er staat altijd **1 platform** klaar.
+- Daarop staan **x poppetjes** klaar en **x bomen** (x is een spelparameter).
+- Bij start doen de poppetjes nog niks en staan in **idle**-staat.
 
 ## Bouwwereld en huizen
 
 - De speler plaatst een **huisje** in de bouwwereld.
 - Na plaatsing is het huis in staat **"under construction"**.
 - De engine onderhoudt een **timer** (voortgang) voor de bouw van dat huis; voor de speler zichtbaar.
+- Als de timer vol is, is het gebouw af: het huisje is in zijn **volledige staat** zichtbaar.
+- Daarna gaan de poppetjes gewoon verder met hun "leven".
+- Als er niks te doen is, staan de poppetjes in **idle**-staat en wordt de idle-animatie afgespeeld.
 
 ## Autonoom werk van poppetjes
 
