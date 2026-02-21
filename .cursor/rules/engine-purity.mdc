@@ -1,0 +1,15 @@
+---
+description: Engine purity and command-driven world updates
+globs: "src/engine/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Engine Purity
+
+- Do not use browser globals in engine code (`window`, `document`, `fetch`, `localStorage`, `indexedDB`, `performance`, `requestAnimationFrame`).
+- Do not import from `react`, `pixi.js`, `@pixi/*`, `src/ui/**`, or `src/render/**`.
+- Talk to external systems only through ports/interfaces.
+- Treat engine world as single source of truth.
+- Place write intents in `src/engine/commands/` as discriminated unions.
+- Keep system files named `*System.ts`.
+- When adding a new system, also add a debug hook/snapshot path for UI debug toggles.

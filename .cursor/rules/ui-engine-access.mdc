@@ -1,0 +1,13 @@
+---
+description: UI may use engine only via engine public facade
+globs: "src/ui/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# UI to Engine Access
+
+- Import engine APIs only through `src/engine/public.ts` (or alias equivalent).
+- Avoid deep imports into `src/engine/**` internals.
+- UI should dispatch commands rather than mutating engine internals.
+- Keep per-frame simulation/entity data out of Zustand stores.
+- Keep debug toggles and tooling state in UI state, not domain state duplication.

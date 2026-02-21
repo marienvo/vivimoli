@@ -1,0 +1,14 @@
+---
+description: Core architecture boundaries and layering direction
+alwaysApply: true
+---
+
+# Core Boundaries
+
+- Respect layer direction: `ui -> engine` and `render -> engine`, never reverse.
+- Keep `src/engine/**` pure and independent from UI, render, and browser APIs.
+- Prefer imports from `*/public.ts` entrypoints; avoid deep cross-layer imports.
+- Do not introduce circular imports.
+- Keep game logic inside engine systems; render loop only syncs visuals.
+- Keep Zustand for UI/debug/sim controls only, never per-frame ECS entity data.
+- Use named exports only; no default exports.

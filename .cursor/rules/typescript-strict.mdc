@@ -1,0 +1,13 @@
+---
+description: TypeScript strictness and safety conventions
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# TypeScript Strict
+
+- Keep strict typing aligned with repo config (`strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`).
+- Never introduce `any`; model uncertain values with unions, generics, or `unknown` plus narrowing.
+- Never use non-null assertions (`!`); handle null/undefined explicitly.
+- Use `import type` where applicable.
+- Keep functions small and explicit in input/output contracts.
