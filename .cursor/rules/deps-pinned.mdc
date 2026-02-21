@@ -1,0 +1,11 @@
+---
+description: Dependencies must use exact versions, no ^ or ~
+globs: "package.json"
+alwaysApply: false
+---
+
+# Dependency versions
+
+- In `package.json`, use exact versions for all dependencies and devDependencies (e.g. `"1.2.3"`).
+- Do not use semver ranges: no `^`, no `~`, no `*`.
+- When adding or updating a package, write the exact version (e.g. from `package-lock.json` or from the registry) and do not add a prefix.
